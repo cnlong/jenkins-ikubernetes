@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: myapp-deploy
+spec:
+  replicas: 10
+  selector:
+    matchLabels:
+      app: myapps
+  template:
+    metadata:
+      labels:
+        app: myapps
+    spec:
+      containers:
+      - name: myapp
+        image: ikubernetes/myapp:v1
+        ports:
+        - name: http
+          containerPort: 80
+        resources:
+          limits:
+            memory: 256Mi
+            cpu: 50m
+          requests:
+            memory: 256Mi
+            cpu: 50m
